@@ -1,13 +1,28 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-import "./App.css";
+import { Route, Routes } from 'react-router-dom';
+import './App.css';
+import { ShoppingCartPage, ShopsPage } from '@/pages';
+import { RoutePath } from './routes/routes';
+
+export const appRoutes = [
+  {
+    path: RoutePath.MAIN,
+    element: <ShopsPage />,
+  },
+  {
+    path: RoutePath.CART,
+    element: <ShoppingCartPage />,
+  },
+];
 
 function App() {
   return (
-    <>
-      <h1>Pharmacy</h1>
-    </>
+    <div className="app">
+      <Routes>
+        {appRoutes.map(route => (
+          <Route path={route.path} element={route.element} key={route.path} />
+        ))}
+      </Routes>
+    </div>
   );
 }
 
